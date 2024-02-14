@@ -12,6 +12,7 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -21,7 +22,7 @@
                 <ColumnDefinition Width="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label>Project Directory</Label>
-            <TextBox Grid.Column="1" Name="tbProjectDir"></TextBox>
+            <TextBox Grid.Column="1" Name="tbProjectDir">d:\FlightSimulator\</TextBox>
             <Button Name="btnSelectProjectDir" Grid.Column="2" Click="btnSelectProjectDir_Click">...</Button>
         </Grid>
         <Grid Grid.Row="1">
@@ -37,9 +38,25 @@
         <Grid Grid.Row="2">
             <Button Name="btnScan" Grid.Row="2" Click="btnScan_Click">Scan</Button>
         </Grid>
-
         <Grid Grid.Row="3">
-            <ListView x:Name="listView" HorizontalContentAlignment="Stretch">
+            <ListView x:Name="lvProjects" HorizontalContentAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                        <GridViewColumn Header="Manufacturer" DisplayMemberBinding="{Binding Manufacturer}" Width="150"/>
+                        <GridViewColumn Header="Actions" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Action" Click="Button_Click" Tag="{Binding}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="4">
+            <ListView x:Name="lvAircrafts" HorizontalContentAlignment="Stretch">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
@@ -54,7 +71,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Grid>
     </Grid>
 </Window>

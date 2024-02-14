@@ -23,12 +23,16 @@ namespace MsFlightSimImporter
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        Scanner scanner = new Scanner();
+
         public ObservableCollection<AircraftNode> AircraftList { get; set; } = new ObservableCollection<AircraftNode>();
+        public ObservableCollection<Project> ProjectList { get; set; } = new ObservableCollection<Project>();
 
         public MainWindow()
         {
             InitializeComponent();
-            listView.ItemsSource = AircraftList;
+            lvAircrafts.ItemsSource = AircraftList;
+            lvProjects.ItemsSource = ProjectList;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -53,16 +57,31 @@ namespace MsFlightSimImporter
 
         private async void btnScan_Click(object sender, RoutedEventArgs e)
         {
-            Scanner scanner = new Scanner();
-            DirectoryInfo scanDir = new DirectoryInfo(tbMsFlightSimDir.Text);
-            
+            UpdateMicrosoftAirplanes();
+            UpdateProjects();
+        }
 
-            foreach (Aircraft craft in scanner.Scan(scanDir))
+        private void UpdateProjects()
+        {
+            ProjectList.Clear();
+            DirectoryInfo scanDir = new DirectoryInfo(tbProjectDir.Text);
+            foreach (Project prj in scanner.ScanProjects(scanDir))
+            {
+                ProjectList.Add(prj);
+            }
+        }
+
+        private void UpdateMicrosoftAirplanes()
+        {
+            AircraftList.Clear();
+            
+            DirectoryInfo scanDir = new DirectoryInfo(tbMsFlightSimDir.Text);
+
+            foreach (Aircraft craft in scanner.ScanAircrafts(scanDir))
             {
                 AircraftNode node = new AircraftNode(craft);
                 AircraftList.Add(node);
             }
-            
         }
 
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
