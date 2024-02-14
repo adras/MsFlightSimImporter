@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsFlightSimImporter", "MsFlightSimImporter\MsFlightSimImporter.csproj", "{F05D3952-490A-4F78-9D0E-95B6A6230B89}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICSharpCode.TreeView", "ICSharpCode.TreeView\ICSharpCode.TreeView.csproj", "{CE10AC71-1BFE-4771-A421-861DEF8A1FB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F05D3952-490A-4F78-9D0E-95B6A6230B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F05D3952-490A-4F78-9D0E-95B6A6230B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F05D3952-490A-4F78-9D0E-95B6A6230B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE10AC71-1BFE-4771-A421-861DEF8A1FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE10AC71-1BFE-4771-A421-861DEF8A1FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE10AC71-1BFE-4771-A421-861DEF8A1FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE10AC71-1BFE-4771-A421-861DEF8A1FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

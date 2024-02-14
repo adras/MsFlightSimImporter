@@ -23,14 +23,13 @@ namespace MsFlightSimImporter
 
     internal class Scanner
     {
-        public void Scan(DirectoryInfo flightSimDir)
+        public IEnumerable<Aircraft> Scan(DirectoryInfo flightSimDir)
         {
-            List<Aircraft> aircraftList = new List<Aircraft>();
 
             foreach (FileInfo manifestFile in flightSimDir.EnumerateFiles("manifest.json", SearchOption.AllDirectories))
             {
                 Aircraft aircraft = ManifestReader.Read(manifestFile.FullName);
-                aircraftList.Add(aircraft);
+                yield return aircraft;
             }
         }
     }

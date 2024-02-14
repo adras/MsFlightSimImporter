@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MsFlightSimImporter"
         mc:Ignorable="d"
+        xmlns:sd="clr-namespace:ICSharpCode.TreeView;assembly=ICSharpCode.TreeView"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -36,8 +38,23 @@
             <Button Name="btnScan" Grid.Row="2" Click="btnScan_Click">Scan</Button>
         </Grid>
 
-        <Grid>
-            
+        <Grid Grid.Row="3">
+            <ListView x:Name="listView" HorizontalContentAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
+                        <GridViewColumn Header="Manufacturer" DisplayMemberBinding="{Binding Manufacturer}" Width="150"/>
+                        <GridViewColumn Header="Actions" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Action" Click="Button_Click" Tag="{Binding}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </Grid>
     </Grid>
 </Window>

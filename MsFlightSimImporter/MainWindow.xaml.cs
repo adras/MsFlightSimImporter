@@ -1,4 +1,10 @@
-﻿using System.IO;
+﻿using ICSharpCode.TreeView;
+using MsFlightSimImporter.Models;
+using MsFlightSimImporter.Models.Aircraft;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,12 +21,17 @@ namespace MsFlightSimImporter
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public ObservableCollection<AircraftNode> AircraftList { get; set; } = new ObservableCollection<AircraftNode>();
+
         public MainWindow()
         {
             InitializeComponent();
+            listView.ItemsSource = AircraftList;
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private void btnSelectProjectDir_Click(object sender, RoutedEventArgs e)
         {
@@ -32,12 +43,31 @@ namespace MsFlightSimImporter
 
         }
 
-        private void btnScan_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Scanner scanner= new Scanner();
-            DirectoryInfo scanDir = new DirectoryInfo(tbMsFlightSimDir.Text);
-            scanner.Scan(scanDir);
+            //if (sender is Button button && button.Tag is Item item)
+            //{
+            //    MessageBox.Show($"Button clicked for {item.Title}, {item.Manufacturer}");
+            //}
+        }
 
+        private async void btnScan_Click(object sender, RoutedEventArgs e)
+        {
+            Scanner scanner = new Scanner();
+            DirectoryInfo scanDir = new DirectoryInfo(tbMsFlightSimDir.Text);
+            
+
+            foreach (Aircraft craft in scanner.Scan(scanDir))
+            {
+                AircraftNode node = new AircraftNode(craft);
+                AircraftList.Add(node);
+            }
+            
+        }
+
+        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
