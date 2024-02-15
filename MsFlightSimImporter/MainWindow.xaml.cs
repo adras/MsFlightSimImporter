@@ -77,7 +77,7 @@ namespace MsFlightSimImporter
             
             DirectoryInfo scanDir = new DirectoryInfo(tbMsFlightSimDir.Text);
 
-            foreach (Aircraft craft in scanner.ScanAircrafts(scanDir))
+            foreach (ManifestInfo craft in scanner.ScanManifests(scanDir))
             {
                 AircraftNode node = new AircraftNode(craft);
                 AircraftList.Add(node);

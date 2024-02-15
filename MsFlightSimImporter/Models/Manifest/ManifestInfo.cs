@@ -17,7 +17,7 @@ namespace MsFlightSimImporter.Models.Aircraft
         public Neutral neutral { get; set; }
     }
 
-    public class Aircraft
+    public class ManifestInfo
     {
         // I don't know the type, I don't know what even dependencies are, I don't care right now
         public List<object> dependencies { get; set; }

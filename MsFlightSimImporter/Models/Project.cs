@@ -7,28 +7,32 @@ using System.Xml.Serialization;
 
 namespace MsFlightSimImporter.Models
 {
-    [XmlRoot(ElementName = "Project")]
+    [XmlRoot("Project")]
     public class Project
     {
-        [XmlElement(ElementName = "OutputDirectory")]
+        [XmlAttribute("Version")]
+        public int Version { get; set; }
+
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("FolderName")]
+        public string FolderName { get; set; }
+
+        [XmlAttribute("PublishingGroupFolderName")]
+        public string PublishingGroupFolderName { get; set; }
+
+        [XmlAttribute("MetadataFolderName")]
+        public string MetadataFolderName { get; set; }
+
+        [XmlAttribute("PublishingGroupMetadataFolderName")]
+        public string PublishingGroupMetadataFolderName { get; set; }
+
         public string OutputDirectory { get; set; }
-
-        [XmlElement(ElementName = "TemporaryOutputDirectory")]
         public string TemporaryOutputDirectory { get; set; }
-
-        [XmlElement(ElementName = "PublishingGroupTemporaryOutputDirectory")]
         public string PublishingGroupTemporaryOutputDirectory { get; set; }
 
-        [XmlElement(ElementName = "Packages")]
-        public Packages Packages { get; set; }
-
-        [XmlElement(ElementName = "PublishingGroups")]
-        public string PublishingGroups { get; set; }
-    }
-
-    public class Packages
-    {
-        [XmlElement(ElementName = "Package")]
-        public string Package { get; set; }
+        public List<string> Packages { get; set; }
+        public List<string> PublishingGroups { get; set; }
     }
 }

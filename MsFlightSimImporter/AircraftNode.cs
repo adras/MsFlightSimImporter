@@ -31,7 +31,7 @@ namespace MsFlightSimImporter
             }
         }
 
-        public AircraftNode(Aircraft aircraft)
+        public AircraftNode(ManifestInfo aircraft)
         {
             Title = aircraft.title;
             Manufacturer = aircraft.manufacturer;
