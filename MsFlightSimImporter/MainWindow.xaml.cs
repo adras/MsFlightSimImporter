@@ -61,11 +61,11 @@ namespace MsFlightSimImporter
             UpdateProjects();
         }
 
-        private void UpdateProjects()
+        private async Task UpdateProjects()
         {
             ProjectList.Clear();
             DirectoryInfo scanDir = new DirectoryInfo(tbProjectDir.Text);
-            foreach (Project prj in scanner.ScanProjects(scanDir))
+            foreach (Project prj in  scanner.ScanProjects(scanDir))
             {
                 ProjectList.Add(prj);
             }

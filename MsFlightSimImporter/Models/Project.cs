@@ -32,6 +32,8 @@ namespace MsFlightSimImporter.Models
         public string TemporaryOutputDirectory { get; set; }
         public string PublishingGroupTemporaryOutputDirectory { get; set; }
 
+        [XmlArray("Packages")]
+        [XmlArrayItem("Package")]
         public List<string> Packages { get; set; }
         public List<string> PublishingGroups { get; set; }
     }

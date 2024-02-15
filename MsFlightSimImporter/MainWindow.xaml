@@ -47,7 +47,7 @@
                         <GridViewColumn Header="Actions" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Action" Click="Button_Click" Tag="{Binding}"/>
+                                    <Button Content="Select" Click="Button_Click" Tag="{Binding}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

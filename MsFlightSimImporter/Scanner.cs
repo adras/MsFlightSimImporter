@@ -19,7 +19,7 @@ namespace MsFlightSimImporter
         {
             string json = File.ReadAllText(filePath);
             ManifestInfo aircraft = JsonSerializer.Deserialize<ManifestInfo>(json);
-
+            
             // Return null on error
             return aircraft;
         }
@@ -34,9 +34,9 @@ namespace MsFlightSimImporter
             {
                 ManifestInfo manifest = ManifestReader.Read(manifestFile.FullName);
                 if (manifest.content_type == "AIRCRAFT")
-                {
-                    yield return manifest;
+                { 
                 }
+                yield return manifest;
             }
         }
 
@@ -46,16 +46,16 @@ namespace MsFlightSimImporter
             foreach (FileInfo testFile in projectDir.EnumerateFiles("*.xml", SearchOption.AllDirectories))
             {
                 XmlReader reader = XmlReader.Create(testFile.FullName);
-                while (reader.Read())
+                while(reader.Read())
                 {
-                    if (reader.Name == "Project")
+                    if (reader.Name== "Project")
                     {
                         projectRoot = testFile.Directory.Parent;
                         goto done;
                     }
                 }
             }
-        done:
+            done:
             // if projectRoot is null, there are not projects yet, that should be treated as error to the user
             // user needs to create a project first
             // unless we get the real directory
